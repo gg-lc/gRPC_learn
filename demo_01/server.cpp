@@ -41,56 +41,16 @@ namespace {
 
 } // namespace
 
-int test_grpc_client()
+int main()
 {
     fprintf(stdout, "client start\n");
     // Instantiate the client. It requires a channel, out of which the actual RPCs are created.
     // This channel models a connection to an endpoint (in this case, localhost at port 50051).
     // We indicate that the channel isn't authenticated(use of InsecureChannelCredentials()).
-    GreeterClient greeter(grpc::CreateChannel("localhost:50051", grpc::InsecureChannelCredentials()));
+    //GreeterClient greeter(grpc::CreateChannel("localhost:50051", grpc::InsecureChannelCredentials()));
     std::string user("world");
-    std::string reply = greeter.SayHello(user);
-    fprintf(stdout, "Greeter received: %s\n", reply.c_str());
-
-    return 0;
-}
-
-namespace {
-
-// Logic and data behind the server's behavior.
-    class GreeterServiceImpl final : public helloworld::Greeter::Service {
-        grpc::Status SayHello(grpc::ServerContext* context, const helloworld::HelloRequest* request, helloworld::HelloReply* reply) override {
-            std::string prefix("Hello ");
-            reply->set_message(prefix + request->name());
-            return grpc::Status::OK;
-        }
-    };
-
-    void RunServer() {
-        std::string server_address("0.0.0.0:50051");
-        GreeterServiceImpl service;
-
-        grpc::ServerBuilder builder;
-        // Listen on the given address without any authentication mechanism.
-        builder.AddListeningPort(server_address, grpc::InsecureServerCredentials());
-        // Register "service" as the instance through which we'll communicate with clients.
-        // In this case it corresponds to an *synchronous* service.
-        builder.RegisterService(&service);
-        // Finally assemble the server.
-        std::unique_ptr<grpc::Server> server(builder.BuildAndStart());
-        fprintf(stdout, "Server listening on: %s\n", server_address.c_str());
-
-        // Wait for the server to shutdown. Note that some other thread must be
-        // responsible for shutting down the server for this call to ever return.
-        server->Wait();
-    }
-
-} // namespace
-
-int test_grpc_server()
-{
-    fprintf(stdout, "server start\n");
-    RunServer();
+    //std::string reply = greeter.SayHello(user);
+    //fprintf(stdout, "Greeter received: %s\n", reply.c_str());
 
     return 0;
 }

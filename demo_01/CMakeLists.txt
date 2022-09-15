@@ -7,13 +7,13 @@ set(Protobuf_INCLUDE_DIR /root/gglc/install/grpc/include)
 set(Protobuf_LIBRARIES /root/gglc/install/grpc/lib)
 
 # gRPC
-include_directories(${Protobuf_INCLUDE_DIR})
-link_directories(${Protobuf_INCLUDE_DIR})
+#include_directories(${Protobuf_INCLUDE_DIR})
+#link_directories(${Protobuf_INCLUDE_DIR})
 
 include_directories(/root/gglc/install/grpc/include)
 link_directories(/root/gglc/install/grpc/lib)
 
-#find_package(protobuf REQUIRED)
+#find_package(Protobuf REQUIRED)
 #include_directories(${Protobuf_INCLUDE_DIR})
 #include_directories(${Protobuf_LIBRARIES})
 
@@ -21,5 +21,5 @@ link_directories(/root/gglc/install/grpc/lib)
 # add_custom_command()
 # protobuf_generate_cpp()
 
-add_executable(server server.cpp)
-add_executable(client client.cpp)
+add_executable(server server.cpp proto/msg.grpc.pb.cc proto/msg.grpc.pb.h)
+add_executable(client client.cpp proto/msg.grpc.pb.cc proto/msg.grpc.pb.h)

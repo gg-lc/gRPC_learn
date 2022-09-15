@@ -1,0 +1,15 @@
+// protoc --cpp_out=./ --grpc_out=./ --plugin=protoc-gen-grpc=/root/gglc/install/grpc/bin/grpc_cpp_plugin param.proto
+
+syntax = "proto3";
+message SearchRequest
+{
+    string Request = 1;
+}
+message SearchResponse
+{
+    string Response = 2;
+}
+service SearchService
+{
+    rpc Search (SearchRequest) returns (SearchResponse);
+}

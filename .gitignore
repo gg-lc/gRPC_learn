@@ -1,4 +1,4 @@
 # Project exclude paths
-/cmake-build-local
-/cmake-build-remote
+*/cmake-build-local
+*/cmake-build-remote
 .idea/

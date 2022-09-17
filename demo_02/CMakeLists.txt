@@ -3,7 +3,8 @@ cmake_minimum_required(VERSION 2.8)
 project(ProtobufTests)
 
 
-
+include(FindProtobuf)
+SET(PROTOBUF_INCLUDE_DIR /root/gglc/install/grpc/include)
 find_package(Protobuf REQUIRED)
 include_directories(${PROTOBUF_INCLUDE_DIRS})
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
